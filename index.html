@@ -1,0 +1,477 @@
+﻿<!DOCTYPE html>
+<html lang="en-gb" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Follow Him | Healing at Your Pace, In Your Space</title>
+    <meta name="description" content="A dynamic, mobile-first substance rehabilitation solution that meets clients where they are—physically, emotionally, and spiritually.">
+    <meta name="author" content="Follow Him Mobile Rehab">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --primary-orange: #f57f17; /* Vibrant Sunrise Orange */
+            --accent-purple: #6a1b9a;  /* Deep Dawn Purple */
+            --accent-gold: #ffca28;    /* Bright Hopeful Gold */
+            --dark-text: #333;
+            --light-text: #fff;
+            --section-bg: #f9f9f9;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-text);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        p {
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .header {
+            background-color: rgba(40, 20, 60, 0.85);
+            transition: all 0.4s ease-out;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar-brand img {
+            height: 30px;
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .navbar-brand b {
+            vertical-align: middle;
+            font-size: 24px;
+        }
+
+        #main-nav .nav li a {
+            color: var(--light-text);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+         #main-nav .nav li a:hover,  #main-nav .nav li.active a {
+            color: var(--accent-gold);
+            background-color: transparent;
+        }
+
+        #home {
+            background: linear-gradient(rgba(106, 27, 154, 0.7), rgba(245, 127, 23, 0.7)), url('https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&q=80&w=2070') no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light-text);
+        }
+
+        #home .hero-text { max-width: 800px; }
+        #home h1 { font-size: 3.5em; font-weight: 700; margin-bottom: 10px; }
+        #home h3 { font-size: 1.8em; font-weight: 400; margin-bottom: 20px; font-style: italic; } /* Motto */
+        #home p { font-size: 1.5em; font-weight: 600; margin-bottom: 40px; } /* Tagline */
+        
+        .btn-custom {
+            padding: 14px 35px;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            margin: 5px;
+            border: 2px solid;
+        }
+
+        .btn-gold {
+            background-color: var(--accent-gold);
+            color: var(--dark-text);
+            border-color: var(--accent-gold);
+        }
+        .btn-gold:hover { background-color: transparent; color: var(--accent-gold); }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--light-text);
+            border-color: var(--light-text);
+        }
+        .btn-outline:hover { background-color: var(--light-text); color: var(--dark-text); }
+
+        .section { padding: 100px 0; }
+        .section-bg { background-color: var(--section-bg); }
+
+        .heading { text-align: center; margin-bottom: 80px; }
+        .heading h2 { font-size: 3em; color: var(--accent-purple); margin-bottom: 20px; }
+        .heading p { font-size: 1.2em; color: #777; max-width: 700px; margin: auto; }
+        
+        .info-card {
+            background: #fff;
+            padding: 40px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            height: 100%;
+        }
+        .info-card .icon { font-size: 4em; color: var(--primary-orange); margin-bottom: 30px; }
+        .info-card h3 { font-size: 1.8em; color: var(--accent-purple); margin-bottom: 15px; }
+
+        .list-features { list-style: none; padding: 0; }
+        .list-features li {
+            font-size: 1.2em;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            transition: background 0.3s;
+        }
+        .list-features li:hover { background: rgba(255,255,255,0.2); }
+        .list-features i { font-size: 1.5em; margin-right: 20px; color: var(--accent-gold); }
+        
+        .founder-section { background-color: var(--section-bg); }
+        /* This is the NEW style with a larger size */
+.founder-img {
+    width: 300px;  /* Increased from 200px */
+    height: 300px; /* Increased from 200px */
+    border-radius: 50%;
+    border: 8px solid var(--accent-gold);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    object-fit: cover;
+}
+        
+        .community-section img {
+            border-radius: 10px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            max-width: 100%;
+        }
+
+        .table-custom {
+            background: #fff;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .table-custom th {
+            background-color: var(--accent-purple);
+            color: var(--light-text);
+            font-weight: 600;
+        }
+        .table-custom td strong { color: var(--accent-purple); }
+
+        .contact-section { background-color: var(--dark-text); color: var(--light-text); }
+        
+        .footer { padding: 20px 0; background: #222; color: #aaa; text-align: center; }
+        .footer a { color: var(--accent-gold); }
+
+/* CSS for the new, glowing hero logo */
+.hero-logo {
+    max-width: 280px;
+    height: auto;
+    margin-bottom: 30px;
+    /* This creates a soft, golden glow around the logo's shape */
+    filter: drop-shadow(0 0 15px rgba(255, 202, 40, 0.7)); 
+}
+
+/* Target the parent of the main content container */
+.parent-container {
+    display: flex;
+    justify-content: center;
+}
+    </style>
+</head>
+
+<body>
+<header class="header">
+  <div class="container">
+    <nav class="navbar navbar-inverse" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+          <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+        </button>
+        <a href="#home" class="navbar-brand">
+            <!-- PLACE YOUR LOGO HERE -->
+            <img src="img/Follow Him.png" alt="Follow Him Logo">
+            <b>Follow Him</b>
+        </a>
+      </div>
+      <div id="main-nav" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" id="mainNav">
+          <li class="active"><a href="#home">Home</a></li>
+          <li><a href="#about">Our Purpose</a></li>
+          <li><a href="#app-features">The App</a></li>
+          <li><a href="#sustainability">Get Involved</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- REPLACEMENT FOR THE HOME SECTION -->
+<section id="home">
+  <div class="container">
+      <div class="hero-text">
+          <!-- LOGO ADDED HERE -->
+          <img src="img/Follow Him.png" alt="Follow Him Mobile Rehab Logo" class="hero-logo animated fadeInDown">
+          
+          <h1 class="animated fadeInDown" data-wow-delay="0.1s">Follow Him Mobile Rehab</h1>
+          <h3 class="animated fadeInDown" data-wow-delay="0.2s">To Live Is to Give</h3>
+          <p class="animated fadeInDown" data-wow-delay="0.3s">Healing at your pace, in your space.</p>
+          <div class="animated fadeInUp" data-wow-delay="0.4s">
+              <a href="#about" class="btn-custom btn-gold">Learn Our Mission</a>
+              <a href="#contact" class="btn-custom btn-outline">Reach Out Now</a>
+          </div>
+      </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about" class="section section-bg">
+    <div class="container">
+        <div class="heading">
+            <h2>Our Purpose</h2>
+            <p>We are a mobile-first rehabilitation solution designed to meet you where you are, combining compassion, science, and community to empower your journey to recovery.</p>
+        </div>
+        <div class="row">
+            <div class="col-md-4 animated fadeInUp" data-wow-delay="0.2s">
+                <div class="info-card">
+                    <div class="icon"><i class="fa fa-compass"></i></div>
+                    <h3>Our Vision</h3>
+                    <p>To create a dynamic, mobile-first substance rehabilitation solution that meets clients where they are—physically, emotionally, and spiritually—while using mobile technology as a tool for healing.</p>
+                </div>
+            </div>
+            <div class="col-md-4 animated fadeInUp" data-wow-delay="0.4s">
+                <div class="info-card">
+                    <div class="icon"><i class="fa fa-bullseye"></i></div>
+                    <h3>Our Mission</h3>
+                    <p>To empower individuals battling addiction through personalized, mobile-based support that combines compassion, science, community outreach, and holistic wellness—delivered directly to their doors.</p>
+                </div>
+            </div>
+            <div class="col-md-4 animated fadeInUp" data-wow-delay="0.6s">
+                <div class="info-card">
+                    <div class="icon"><i class="fa fa-heart"></i></div>
+                    <h3>Why "Follow Him"</h3>
+                    <p>It's a call towards healing and purpose, playing on "following" in digital culture to redirect it toward hope, growth, and client-led, non-judgmental recovery.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOUNDER SECTION -->
+<section id="founder" class="section founder-section">
+    <div class="container text-center">
+        <div class="heading">
+            <h2>Meet Our Founder</h2>
+        </div>
+        <!-- PLACE FOUNDER'S IMAGE HERE -->
+        <img src="img/Dr Xolani.jpg" alt="Dr. Xolani Mathunda" class="founder-img animated pulse">
+        <h3 style="margin-top: 30px; font-size: 2em; color: var(--accent-purple);">Dr. Xolani Mathunda</h3>
+        <p style="font-size: 1.5em; color: #555;">Medical Officer in Psychiatry</p>
+    </div>
+</section>
+
+<!-- APP FEATURES SECTION -->
+<section id="app-features" class="section" style="background-color: var(--accent-purple); color: var(--light-text);">
+    <div class="container">
+        <div class="heading">
+            <h2 style="color: var(--light-text);">📱 Inside the Follow Him App</h2>
+            <p style="color: #eee;">All the tools you need for your recovery journey, right in your pocket.</p>
+        </div>
+        <div class="row">
+            <div class="col-md-6 animated fadeInLeft">
+                <ul class="list-features">
+                    <li><i class="fa fa-check-square-o"></i> Daily check-ins and journaling</li>
+                    <li><i class="fa fa-line-chart"></i> Mood & habit tracking</li>
+                    <li><i class="fa fa-comments"></i> 1-on-1 chat or video therapy</li>
+                    <li><i class="fa fa-leaf"></i> Spiritual affirmations / guided meditations</li>
+                </ul>
+            </div>
+            <div class="col-md-6 animated fadeInRight">
+                <ul class="list-features">
+                    <li><i class="fa fa-book"></i> Educational modules (health, relationships)</li>
+                    <li><i class="fa fa-warning"></i> Emergency call/help button</li>
+                    <li><i class="fa fa-trophy"></i> Progress & achievement tracking</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SUBSTANCES & EFFECTS SECTION -->
+<section id="understanding" class="section">
+    <div class="container">
+        <div class="heading">
+            <h2>💡 Understanding the Challenge</h2>
+            <p>We provide help for a wide range of dependencies by addressing both the substance and the common effects.</p>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Substance Categories Addressed</h3>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4>Artificial Substances</h4>
+                        <ul>
+                            <li>Alcohol</li>
+                            <li>Dagga</li>
+                            <li>Cocaine</li>
+                            <li>Tik</li>
+                            <li>Cigarettes</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <h4>Neurochemical Dependencies</h4>
+                        <ul>
+                            <li>Dopamine & Serotonin</li>
+                            <li>GABA & Melatonin</li>
+                            <li>Norepinephrine</li>
+                            <li>Choline & Glutamate</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3>Common Effects of Dependence</h3>
+                <p><strong>Speech:</strong> Slurred, stuttering, blocked expression</p>
+                <p><strong>Thoughts:</strong> Foggy, confused, paranoid</p>
+                <p><strong>Feelings:</strong> Numb, unstable, extreme highs/lows</p>
+                <p><strong>Sleep:</strong> Insomnia or oversleeping</p>
+                <p><strong>Behavior:</strong> Risky, aggressive, withdrawn</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- COMMUNITY SECTION -->
+<section id="community" class="section community-section section-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 animated fadeInLeft">
+                <div class="heading" style="text-align: left;">
+                    <h2 style="text-align: left;">To Live Is to Give</h2>
+                    <p style="text-align: left; max-width: 100%;">Our motto is put into action through community outreach. Clients find purpose and healing by giving back, participating in events like our Gifted Hands initiatives where they earn stipends while revitalizing their community.</p>
+                </div>
+            </div>
+            <div class="col-md-6 animated fadeInRight">
+                <!-- PLACE COMMUNITY EVENT IMAGE HERE -->
+                <img src="img/PeopleGiftedHands.jpg" alt="A Gifted Hands community event">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SUSTAINABILITY SECTION -->
+<section id="sustainability" class="section">
+    <div class="container">
+        <div class="heading">
+            <h2>🌱 Our Sustainability Model</h2>
+            <p>Our mission is powered by a diverse network of support, from grassroots community involvement to strategic partnerships. Here's how we make it work and how you can get involved.</p>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover table-custom">
+                <thead><tr><th>Stream</th><th>Details</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Family Subscriptions</strong></td><td>Monthly fee for dedicated home-based care & continuous follow-ups.</td></tr>
+                    <tr><td><strong>Corporate Sponsorships</strong></td><td>Partnering with brands to support data, phones, and transport costs.</td></tr>
+                    <tr><td><strong>Government Partnerships</strong></td><td>Collaborating with DSD, Health Dept, & R350 grant programs.</td></tr>
+                    <tr><td><strong>Community Clean-Up Stipends</strong></td><td>Clients earn an income while actively giving back to the community.</td></tr>
+                    <tr><td><strong>Fundraising Events</strong></td><td>Engaging the public through charity walks, community days, and wellness drives.</td></tr>
+                    <tr><td><strong>Merchandise & Content</strong></td><td>Sales of branded items and monetization of our inspiring stories.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="section contact-section">
+    <div class="container text-center">
+        <div class="heading">
+            <h2 style="color: var(--light-text);">Get In Touch</h2>
+            <p style="color: #eee;">Ready to start your journey? Need help for a loved one? Want to lend your support? We’d love to hear from you.</p>
+        </div>
+        <div style="font-size: 1.5em; line-height: 2;">
+            <p><i class="fa fa-whatsapp"></i> &nbsp; <a href="tel:+27000000000" style="color: #fff;">+27 XXX XXX XXX</a></p>
+            <p><i class="fa fa-envelope"></i> &nbsp; <a href="mailto:support@followhim.org" style="color: #fff;">support@followhim.org</a></p>
+            <p><i class="fa fa-instagram"></i> &nbsp; <a href="#" style="color: #fff;">@FollowHimZA</a></p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER SECTION -->
+<footer class="footer">
+  <div class="container">
+
+    <!-- ===== START: PARTNERS SECTION ===== -->
+    <div class="partner-section" style="margin-bottom: 30px;">
+      <h4 style="color: #ccc; font-weight: 600; text-transform: uppercase; font-size: 14px; margin-bottom: 20px;">
+        Our Partners
+      </h4>
+      
+      <!-- This is the container that creates the row -->
+      <div class="logo-row" style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;">
+       
+        <!-- Partner 1: REPLACE WITH YOUR INFO -->
+        <a href="#" title="Backroom Systems">
+          <img src="img/Back RoomSystems LOGO.png" alt="Partner 2 Logo" style="max-width: 160px; height: auto;">
+        </a>
+        
+        <!-- Partner 2: Gifted Hands -->
+        <a href="#" title="In partnership with Gifted Hands">
+          <img src="img/GiftedHandsLogo.jpg" alt="Gifted Hands Logo" style="max-width: 100px; height: auto;">
+        </a>
+        
+        <!-- Partner 3: REPLACE WITH YOUR INFO -->
+        <a href="#" title="CogniFit">
+          <img src="img/Cognifit LOGO.png" alt="Partner 3 Logo" style="max-width: 160px; height: auto;">
+        </a>
+
+      </div>
+    </div>
+    <!-- ===== END: PARTNERS SECTION ===== -->
+
+    Copyright © 2025 Follow Him Mobile Rehab | All Rights Reserved
+  </div>
+</footer>
+
+<!-- External Scripts -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nav/3.0.0/jquery.nav.min.js"></script>
+<script>
+    // Smooth Scrolling for Navigation
+    $(document).ready(function() {
+      $('#mainNav').onePageNav({
+        currentClass: 'active',
+        changeHash: false,
+        scrollSpeed: 750,
+        scrollThreshold: 0.5,
+        filter: '',
+        easing: 'swing'
+      });
+    });
+</script>
+
+</body>
+</html>
