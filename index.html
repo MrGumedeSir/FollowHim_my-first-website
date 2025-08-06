@@ -198,6 +198,31 @@
     display: flex;
     justify-content: center;
 }
+        /* =============================================
+   Mobile Responsive Adjustments
+   ============================================= */
+@media (max-width: 767px) {
+
+    /* Make hero text more readable on small screens */
+    #home h1 {
+        font-size: 2.5em; /* Was 3.5em */
+    }
+
+    #home h3 {
+        font-size: 1.5em; /* Was 1.8em */
+    }
+
+    #home p {
+        font-size: 1.3em; /* Was 1.5em */
+    }
+
+    /* Stack the hero buttons vertically to prevent overlap */
+    #home .btn-custom {
+        display: block; /* Makes each button take its own line */
+        margin: 15px auto; /* Adds vertical space and centers them */
+        width: 80%; /* Gives a consistent width, not too wide */
+    }
+}
     </style>
 </head>
 
