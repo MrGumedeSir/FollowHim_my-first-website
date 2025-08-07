@@ -75,7 +75,7 @@ I'm open to partnerships, funding opportunities, and collaborators—especially 
 ## 📫 Contact
 
 - Email: **thakasagumede3@gmail.com**
-- WhatsApp: **+27 71 319 9122**
+- WhatsApp: **+27 68 376 5641**
 - Location: Ipopeng, Kimberley, South Africa
 
 ---
