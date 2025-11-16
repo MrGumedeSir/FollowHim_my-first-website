@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en-gb" class="no-js">
 <head>
     <meta charset="utf-8">
@@ -8,175 +7,975 @@
     <meta name="description" content="A dynamic, mobile-first substance rehabilitation solution that meets clients where they are—physically, emotionally, and spiritually.">
     <meta name="author" content="Follow Him Mobile Rehab">
 
-<!-- External CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700" rel="stylesheet">
-
-<!-- Custom Styles -->
 <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
     :root {
-        --primary-orange: #f57f17; /* Vibrant Sunrise Orange */
-        --accent-purple: #6a1b9a;  /* Deep Dawn Purple */
-        --accent-gold: #ffca28;    /* Bright Hopeful Gold */
-        --dark-text: #333;
-        --light-text: #fff;
-        --section-bg: #f9f9f9;
+        --primary-orange: #f57f17;
+        --accent-purple: #6a1b9a;
+        --accent-gold: #ffca28;
+        --dark-text: #1a1a1a;
+        --light-text: #ffffff;
+        --section-bg: #f8f9fa;
+        --card-bg: #ffffff;
+        --gradient-primary: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 50%, #f57f17 100%);
+        --gradient-hero: linear-gradient(135deg, rgba(106, 27, 154, 0.95) 0%, rgba(142, 36, 170, 0.9) 50%, rgba(245, 127, 23, 0.85) 100%);
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+        --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+        --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.2);
+    }
+
+    html {
+        scroll-behavior: smooth;
+        font-size: 16px;
     }
 
     body {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         color: var(--dark-text);
+        line-height: 1.7;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
     }
 
     h1, h2, h3, h4, h5, h6 {
         font-family: 'Poppins', sans-serif;
         font-weight: 700;
+        line-height: 1.3;
+        letter-spacing: -0.02em;
     }
 
-    p {
-        line-height: 1.8;
-        font-size: 16px;
+    /* Scroll Progress Indicator */
+    .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background: var(--gradient-primary);
+        z-index: 9999;
+        transition: width 0.1s ease;
     }
 
+    /* Modern Navigation */
+    .navbar-modern {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        box-shadow: var(--shadow-sm);
+        transition: all 0.3s ease;
+        padding: 1rem 0;
+    }
+
+    .navbar-modern.scrolled {
+        box-shadow: var(--shadow-md);
+        padding: 0.75rem 0;
+    }
+
+    .navbar-modern .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar-brand-modern {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-decoration: none;
+        letter-spacing: -0.02em;
+        transition: transform 0.3s ease;
+    }
+
+    .navbar-brand-modern:hover {
+        transform: scale(1.05);
+    }
+
+    .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+        margin: 0;
+        align-items: center;
+    }
+
+    .nav-links a {
+        color: var(--dark-text);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 0.5rem 0;
+    }
+
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--gradient-primary);
+        transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+        width: 100%;
+    }
+
+    .nav-links a:hover {
+        color: var(--accent-purple);
+        transform: translateY(-2px);
+    }
+
+    .mobile-menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--dark-text);
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .mobile-menu-toggle:hover {
+        transform: scale(1.1);
+    }
+
+    /* Hero Section */
     #home {
-        background: linear-gradient(rgba(106, 27, 154, 0.7), rgba(245, 127, 23, 0.7)), url('https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&q=80&w=2070') no-repeat center center;
-        background-size: cover;
-        height: 100vh;
+        min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        text-align: center;
-        color: var(--light-text);
+        background: var(--gradient-hero);
+        position: relative;
+        overflow: hidden;
+        padding-top: 80px;
     }
 
-    #home .hero-text { max-width: 800px; }
-    #home h1 { font-size: 3.5em; font-weight: 700; margin-bottom: 10px; }
-    #home h3 { font-size: 1.8em; font-weight: 400; margin-bottom: 20px; font-style: italic; } /* Motto */
-    #home p { font-size: 1.5em; font-weight: 600; margin-bottom: 40px; } /* Tagline */
-    
-    .btn-custom {
-        padding: 14px 35px;
-        font-size: 16px;
+    #home::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(circle, rgba(255, 202, 40, 0.15) 0%, transparent 70%);
+        border-radius: 50%;
+        animation: float 20s ease-in-out infinite;
+    }
+
+    #home::after {
+        content: '';
+        position: absolute;
+        bottom: -30%;
+        left: -10%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(106, 27, 154, 0.2) 0%, transparent 70%);
+        border-radius: 50%;
+        animation: float 15s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        50% { transform: translate(30px, -30px) scale(1.1); }
+    }
+
+    #home .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    #home .hero-text {
+        max-width: 1000px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    #home .hero-logo {
+        max-width: 450px;
+        width: 100%;
+        height: auto;
+        margin: 0 auto 3rem;
+        display: block;
+        filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+        animation: fadeInScale 1s ease-out;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+    }
+
+    #home .hero-logo:hover {
+        transform: scale(1.05) rotate(2deg);
+    }
+
+    @keyframes fadeInScale {
+        from {
+            opacity: 0;
+            transform: scale(0.85) translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+
+    #home h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        color: var(--light-text);
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        letter-spacing: -0.03em;
+        animation: fadeInDown 0.8s ease-out 0.2s both;
+    }
+
+    #home h3 {
+        font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+        font-weight: 400;
+        margin-bottom: 1.5rem;
+        color: var(--accent-gold);
+        font-style: italic;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        animation: fadeInDown 0.8s ease-out 0.4s both;
+    }
+
+    #home p {
+        font-size: clamp(1rem, 1.8vw, 1.3rem);
+        font-weight: 400;
+        margin-bottom: 3rem;
+        color: rgba(255, 255, 255, 0.95);
+        line-height: 1.8;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        animation: fadeInDown 0.8s ease-out 0.6s both;
+    }
+
+    .btn-modern {
+        display: inline-block;
+        padding: 1rem 2.5rem;
+        font-size: 1rem;
         font-weight: 600;
         text-transform: uppercase;
+        letter-spacing: 0.05em;
         border-radius: 50px;
-        transition: all 0.3s ease;
-        margin: 5px;
-        border: 2px solid;
+        text-decoration: none;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        margin: 0.5rem;
+        border: 2px solid transparent;
+        position: relative;
+        overflow: hidden;
+        animation: fadeInUp 0.8s ease-out 0.8s both;
+    }
+
+    .btn-modern::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        transition: left 0.4s ease;
+    }
+
+    .btn-modern:hover::before {
+        left: 100%;
     }
 
     .btn-gold {
-        background-color: var(--accent-gold);
+        background: var(--accent-gold);
         color: var(--dark-text);
-        border-color: var(--accent-gold);
+        box-shadow: 0 8px 24px rgba(255, 202, 40, 0.4);
     }
-    .btn-gold:hover { background-color: transparent; color: var(--accent-gold); }
 
-    .btn-outline {
-        background-color: transparent;
+    .btn-gold:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 32px rgba(255, 202, 40, 0.5);
+        background: #ffd54f;
+    }
+
+    .btn-outline-white {
+        background: transparent;
         color: var(--light-text);
         border-color: var(--light-text);
+        box-shadow: 0 4px 16px rgba(255, 255, 255, 0.1);
     }
-    .btn-outline:hover { background-color: var(--light-text); color: var(--dark-text); }
 
-    .section { padding: 100px 0; }
-    .section-bg { background-color: var(--section-bg); }
+    .btn-outline-white:hover {
+        background: var(--light-text);
+        color: var(--accent-purple);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+    }
 
-    .heading { text-align: center; margin-bottom: 80px; }
-    .heading h2 { font-size: 3em; color: var(--accent-purple); margin-bottom: 20px; }
-    .heading p { font-size: 1.2em; color: #777; max-width: 700px; margin: auto; }
-    
-    .info-card {
-        background: #fff;
-        padding: 40px;
+    /* Sections */
+    .section {
+        padding: 6rem 0;
+        position: relative;
+    }
+
+    .section-bg {
+        background: var(--section-bg);
+    }
+
+    .heading {
         text-align: center;
-        border-radius: 10px;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-        margin-bottom: 30px;
-        height: 100%;
+        margin-bottom: 4rem;
     }
-    .info-card .icon { font-size: 4em; color: var(--primary-orange); margin-bottom: 30px; }
-    .info-card h3 { font-size: 1.8em; color: var(--accent-purple); margin-bottom: 15px; }
 
-    .list-features { list-style: none; padding: 0; }
-    .list-features li {
-        font-size: 1.2em;
-        padding: 15px;
-        background: rgba(255,255,255,0.1);
-        margin-bottom: 10px;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        transition: background 0.3s;
+    .heading h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        color: var(--accent-purple);
+        margin-bottom: 1.5rem;
+        position: relative;
+        display: inline-block;
     }
-    .list-features li:hover { background: rgba(255,255,255,0.2); }
-    .list-features i { font-size: 1.5em; margin-right: 20px; color: var(--accent-gold); }
-    
-    .founder-section { background-color: var(--section-bg); }
-    
-    /* ===== NEW, MORE APPEALING STYLE FOR FOUNDER IMAGE ===== */
+
+    .heading h2::after {
+        content: '';
+        position: absolute;
+        bottom: -1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: var(--gradient-primary);
+        border-radius: 2px;
+    }
+
+    .heading p {
+        font-size: clamp(1rem, 1.5vw, 1.2rem);
+        color: #666;
+        max-width: 700px;
+        margin: 2rem auto 0;
+        line-height: 1.8;
+    }
+
+    /* Modern Cards */
+    .info-card-modern {
+        background: var(--card-bg);
+        padding: 3rem 2.5rem;
+        border-radius: 20px;
+        box-shadow: var(--shadow-md);
+        height: 100%;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .info-card-modern::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--gradient-primary);
+        transform: scaleX(0);
+        transition: transform 0.4s ease;
+    }
+
+    .info-card-modern:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: var(--shadow-xl);
+    }
+
+    .info-card-modern:hover::before {
+        transform: scaleX(1);
+    }
+
+    .info-card-modern .icon {
+        font-size: 3.5rem;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1.5rem;
+        transition: transform 0.3s ease;
+        display: inline-block;
+    }
+
+    .info-card-modern:hover .icon {
+        transform: scale(1.15) rotate(5deg);
+    }
+
+    .info-card-modern h3 {
+        font-size: 1.5rem;
+        color: var(--accent-purple);
+        margin-bottom: 1rem;
+        font-weight: 700;
+        transition: color 0.3s ease;
+    }
+
+    .info-card-modern:hover h3 {
+        color: var(--primary-orange);
+    }
+
+    .info-card-modern p {
+        color: #555;
+        line-height: 1.8;
+        font-size: 1rem;
+    }
+
+    /* Founder Section */
+    .founder-section {
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    }
+
     .founder-img {
-        width: 250px;      /* Adjusted size */
-        height: 250px;     /* Adjusted size */
+        width: 300px;
+        height: 300px;
         border-radius: 50%;
         object-fit: cover;
-        border: 5px solid #fff; /* Crisp white inner border */
-        /* Multi-layered shadow for a "frame" and depth effect */
-        box-shadow: 
-            0 0 0 8px var(--accent-gold),   /* The main gold "frame" */
-            0 15px 45px rgba(0,0,0,0.2);   /* A softer, deeper drop shadow */
+        border: 8px solid #fff;
+        box-shadow: 0 0 0 12px var(--accent-gold), var(--shadow-xl);
+        transition: all 0.4s ease;
+        margin-bottom: 2rem;
+        cursor: pointer;
     }
 
-    .community-section img {
-        border-radius: 10px;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-        max-width: 100%;
+    .founder-img:hover {
+        transform: scale(1.05) rotate(2deg);
+        box-shadow: 0 0 0 12px var(--accent-gold), 0 20px 60px rgba(0, 0, 0, 0.3);
     }
 
-    .table-custom {
-        background: #fff;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-        border-radius: 10px;
+    .founder-info h3 {
+        font-size: 2rem;
+        color: var(--accent-purple);
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .founder-info p {
+        font-size: 1.2rem;
+        color: #666;
+    }
+
+    /* App Features Section */
+    #app-features {
+        background: var(--gradient-primary);
+        color: var(--light-text);
+        position: relative;
         overflow: hidden;
     }
-    .table-custom th {
-        background-color: var(--accent-purple);
+
+    #app-features::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+        opacity: 0.3;
+    }
+
+    #app-features .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    #app-features .heading h2 {
         color: var(--light-text);
+    }
+
+    #app-features .heading h2::after {
+        background: var(--accent-gold);
+    }
+
+    #app-features .heading p {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .feature-list-modern {
+        list-style: none;
+        padding: 0;
+    }
+
+    .feature-list-modern li {
+        font-size: 1.1rem;
+        padding: 1.25rem 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        margin-bottom: 1rem;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+    }
+
+    .feature-list-modern li:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateX(8px) scale(1.02);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature-list-modern i {
+        font-size: 1.5rem;
+        margin-right: 1.25rem;
+        color: var(--accent-gold);
+        min-width: 30px;
+        transition: transform 0.3s ease;
+    }
+
+    .feature-list-modern li:hover i {
+        transform: scale(1.2) rotate(5deg);
+    }
+
+    /* Understanding Section */
+    .understanding-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .understanding-card {
+        background: var(--card-bg);
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: var(--shadow-md);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .understanding-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .understanding-card h3 {
+        font-size: 1.5rem;
+        color: var(--accent-purple);
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--accent-gold);
+    }
+
+    .understanding-card h4 {
+        font-size: 1.2rem;
+        color: var(--primary-orange);
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .understanding-card ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .understanding-card ul li {
+        padding: 0.5rem 0;
+        color: #555;
+        position: relative;
+        padding-left: 1.5rem;
+        transition: color 0.3s ease;
+    }
+
+    .understanding-card ul li:hover {
+        color: var(--accent-purple);
+    }
+
+    .understanding-card ul li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--accent-purple);
+        font-weight: bold;
+    }
+
+    .understanding-card p {
+        color: #555;
+        line-height: 1.8;
+        margin-bottom: 0.75rem;
+    }
+
+    .understanding-card strong {
+        color: var(--accent-purple);
         font-weight: 600;
     }
-    .table-custom td strong { color: var(--accent-purple); }
 
-    .contact-section { background-color: var(--dark-text); color: var(--light-text); }
-    
-    .footer { padding: 20px 0; background: #222; color: #aaa; text-align: center; }
-    .footer a { color: var(--accent-gold); }
-
-    .hero-logo {
-        max-width: 280px;
-        height: auto;
-        margin-bottom: 30px;
-        filter: drop-shadow(0 0 15px rgba(255, 202, 40, 0.7));
+    /* Community Section */
+    .community-section {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
     }
 
-    .parent-container {
+    .community-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .community-text {
+        text-align: left;
+    }
+
+    .community-text h2 {
+        text-align: left;
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        margin-bottom: 1.5rem;
+    }
+
+    .community-text h2::after {
+        left: 0;
+        transform: none;
+    }
+
+    .community-text p {
+        text-align: left;
+        font-size: 1.1rem;
+        line-height: 1.9;
+        color: #555;
+    }
+
+    .community-image {
+        border-radius: 20px;
+        box-shadow: var(--shadow-xl);
+        overflow: hidden;
+        transition: transform 0.4s ease;
+        cursor: pointer;
+    }
+
+    .community-image:hover {
+        transform: scale(1.03);
+    }
+
+    .community-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.4s ease;
+    }
+
+    .community-image:hover img {
+        transform: scale(1.1);
+    }
+
+    /* Sustainability Table */
+    .table-modern {
+        background: var(--card-bg);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        border: none;
+    }
+
+    .table-modern thead {
+        background: var(--gradient-primary);
+    }
+
+    .table-modern th {
+        color: var(--light-text);
+        font-weight: 600;
+        padding: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-size: 0.875rem;
+        border: none;
+    }
+
+    .table-modern td {
+        padding: 1.5rem;
+        border-bottom: 1px solid #f0f0f0;
+        transition: all 0.2s ease;
+        vertical-align: middle;
+    }
+
+    .table-modern tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    .table-modern tbody tr {
+        transition: all 0.2s ease;
+    }
+
+    .table-modern tbody tr:hover {
+        transform: scale(1.01);
+    }
+
+    .table-modern tbody tr:hover td {
+        background: #f8f9fa;
+    }
+
+    .table-modern td strong {
+        color: var(--accent-purple);
+        font-weight: 600;
+        font-size: 1.05rem;
+    }
+
+    /* Contact Section */
+    .contact-section {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        color: var(--light-text);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .contact-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(245, 127, 23, 0.15) 0%, transparent 70%);
+        border-radius: 50%;
+    }
+
+    .contact-section .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    .contact-section .heading h2 {
+        color: var(--light-text);
+    }
+
+    .contact-section .heading h2::after {
+        background: var(--accent-gold);
+    }
+
+    .contact-section .heading p {
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .contact-info {
         display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .contact-info p {
+        display: flex;
+        align-items: center;
         justify-content: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .contact-info p:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateX(5px);
+    }
+
+    .contact-info a {
+        color: var(--accent-gold);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .contact-info a:hover {
+        color: var(--light-text);
+    }
+
+    .contact-info i {
+        font-size: 1.5rem;
+        width: 30px;
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    .contact-info p:hover i {
+        transform: scale(1.2);
+    }
+
+    /* Footer */
+    .footer {
+        padding: 2.5rem 0;
+        background: #0f0f0f;
+        color: #aaa;
+        text-align: center;
+        border-top: 1px solid rgba(255, 202, 40, 0.2);
+    }
+
+    .footer a {
+        color: var(--accent-gold);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .footer a:hover {
+        color: var(--light-text);
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .fade-in {
+        animation: fadeInUp 0.8s ease-out both;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 991px) {
+        .community-content {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .community-text {
+            text-align: center;
+        }
+
+        .community-text h2 {
+            text-align: center;
+        }
+
+        .community-text h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .community-text p {
+            text-align: center;
+        }
+
     }
 
     @media (max-width: 767px) {
-        #home h1 { font-size: 2.5em; }
-        #home h3 { font-size: 1.5em; }
-        #home p { font-size: 1.3em; }
-        #home .btn-custom {
+        .mobile-menu-toggle {
             display: block;
-            margin: 15px auto;
-            width: 80%;
+        }
+
+        .nav-links {
+            position: fixed;
+            top: 70px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            flex-direction: column;
+            padding: 2rem;
+            transition: left 0.3s ease;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-links.active {
+            left: 0;
+        }
+
+        .nav-links a {
+            font-size: 1.1rem;
+            padding: 1rem 0;
+        }
+
+        #home {
+            padding-top: 70px;
+            min-height: 90vh;
+        }
+
+        #home .hero-logo {
+            max-width: 280px;
+            margin-bottom: 2rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .heading {
+            margin-bottom: 3rem;
+        }
+
+        .info-card-modern {
+            padding: 2rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .understanding-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .btn-modern {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 0.5rem auto;
+        }
+
+        .founder-img {
+            width: 250px;
+            height: 250px;
+        }
+
+    }
+
+    @media (max-width: 480px) {
+        .heading h2 {
+            font-size: 1.8rem;
+        }
+
+        .info-card-modern {
+            padding: 1.5rem;
+        }
+
+        .table-modern th,
+        .table-modern td {
+            padding: 1rem;
+            font-size: 0.9rem;
         }
     }
 </style>
@@ -185,19 +984,43 @@
 
 <body>
 
+<!-- Scroll Progress Indicator -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Modern Navigation -->
+<nav class="navbar-modern" id="navbar">
+    <div class="container">
+        <a href="#home" class="navbar-brand-modern">Follow Him</a>
+        <button class="mobile-menu-toggle" id="menuToggle">
+            <i class="fa fa-bars"></i>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#founder">Founder</a></li>
+            <li><a href="#app-features">App</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section -->
 <section id="home">
-  <div class="container">
-      <div class="hero-text">
-          <h1 class="animated fadeInDown" data-wow-delay="0.1s">Follow Him Mobile Rehab</h1>
-          <p class="animated fadeInDown" data-wow-delay="0.3s">Healing at your pace, in your space.</p>
-          <div class="animated fadeInUp" data-wow-delay="0.4s">
-              <a href="#about" class="btn-custom btn-gold">Learn Our Mission</a>
-              <a href="#contact" class="btn-custom btn-outline">Reach Out Now</a>
-          </div>
-      </div>
-  </div>
+    <div class="container">
+        <div class="hero-text">
+            <img src="img/FOLLOW HIM LOGO.jpg" alt="Follow Him Logo" class="hero-logo" onerror="this.onerror=null; this.src='../FollowHim_LOGO.png';">
+            <h1>Follow Him Mobile Rehab</h1>
+            <h3>Healing at your pace, in your space.</h3>
+            <p>A dynamic, mobile-first substance rehabilitation solution that meets clients where they are—physically, emotionally, and spiritually.</p>
+            <div>
+                <a href="#about" class="btn-modern btn-gold">Learn Our Mission</a>
+                <a href="#contact" class="btn-modern btn-outline-white">Reach Out Now</a>
+            </div>
+        </div>
+    </div>
 </section>
 
+<!-- About Section -->
 <section id="about" class="section section-bg">
     <div class="container">
         <div class="heading">
@@ -205,22 +1028,22 @@
             <p>We are a mobile-first rehabilitation solution designed to meet you where you are, combining compassion, science, and community to empower your journey to recovery.</p>
         </div>
         <div class="row">
-            <div class="col-md-4 animated fadeInUp" data-wow-delay="0.2s">
-                <div class="info-card">
+            <div class="col-md-4 fade-in">
+                <div class="info-card-modern">
                     <div class="icon"><i class="fa fa-compass"></i></div>
                     <h3>Our Vision</h3>
                     <p>To create a dynamic, mobile-first substance rehabilitation solution that meets clients where they are—physically, emotionally, and spiritually—while using mobile technology as a tool for healing.</p>
                 </div>
             </div>
-            <div class="col-md-4 animated fadeInUp" data-wow-delay="0.4s">
-                <div class="info-card">
+            <div class="col-md-4 fade-in" style="animation-delay: 0.1s;">
+                <div class="info-card-modern">
                     <div class="icon"><i class="fa fa-bullseye"></i></div>
                     <h3>Our Mission</h3>
                     <p>To empower individuals battling addiction through personalized, mobile-based support that combines compassion, science, community outreach, and holistic wellness—delivered directly to their doors.</p>
                 </div>
             </div>
-            <div class="col-md-4 animated fadeInUp" data-wow-delay="0.6s">
-                <div class="info-card">
+            <div class="col-md-4 fade-in" style="animation-delay: 0.2s;">
+                <div class="info-card-modern">
                     <div class="icon"><i class="fa fa-heart"></i></div>
                     <h3>Why "Follow Him"</h3>
                     <p>It's a call towards healing and purpose, playing on "following" in digital culture to redirect it toward hope, growth, and client-led, non-judgmental recovery.</p>
@@ -230,34 +1053,38 @@
     </div>
 </section>
 
+<!-- Founder Section -->
 <section id="founder" class="section founder-section">
     <div class="container text-center">
         <div class="heading">
             <h2>Meet Our Founder</h2>
         </div>
-        <img src="img/Dr Xolani.jpg" alt="Dr. Xolani Mathunda" class="founder-img animated pulse">
-        <h3 style="margin-top: 30px; font-size: 2em; color: var(--accent-purple);">Dr. Xolani Mathunda</h3>
-        <p style="font-size: 1.5em; color: #555;">Medical Officer in Psychiatry</p>
+        <img src="img/Dr Xolani.jpg" alt="Dr. Xolani Mathunda" class="founder-img fade-in">
+        <div class="founder-info">
+            <h3>Dr. Xolani Mathunda</h3>
+            <p>Medical Officer in Psychiatry</p>
+        </div>
     </div>
 </section>
 
-<section id="app-features" class="section" style="background-color: var(--accent-purple); color: var(--light-text);">
+<!-- App Features Section -->
+<section id="app-features" class="section">
     <div class="container">
         <div class="heading">
-            <h2 style="color: var(--light-text);">📱 Inside the Follow Him App</h2>
-            <p style="color: #eee;">All the tools you need for your recovery journey, right in your pocket.</p>
+            <h2>Inside the Follow Him App</h2>
+            <p>All the tools you need for your recovery journey, right in your pocket.</p>
         </div>
         <div class="row">
-            <div class="col-md-6 animated fadeInLeft">
-                <ul class="list-features">
+            <div class="col-md-6 fade-in">
+                <ul class="feature-list-modern">
                     <li><i class="fa fa-check-square-o"></i> Daily check-ins and journaling</li>
                     <li><i class="fa fa-line-chart"></i> Mood & habit tracking</li>
                     <li><i class="fa fa-comments"></i> 1-on-1 chat or video therapy</li>
                     <li><i class="fa fa-leaf"></i> Spiritual affirmations / guided meditations</li>
                 </ul>
             </div>
-            <div class="col-md-6 animated fadeInRight">
-                <ul class="list-features">
+            <div class="col-md-6 fade-in" style="animation-delay: 0.1s;">
+                <ul class="feature-list-modern">
                     <li><i class="fa fa-book"></i> Educational modules (health, relationships)</li>
                     <li><i class="fa fa-warning"></i> Emergency call/help button</li>
                     <li><i class="fa fa-trophy"></i> Progress & achievement tracking</li>
@@ -267,38 +1094,35 @@
     </div>
 </section>
 
+<!-- Understanding Section -->
 <section id="understanding" class="section">
     <div class="container">
         <div class="heading">
-            <h2>💡 Understanding the Challenge</h2>
+            <h2>Understanding the Challenge</h2>
             <p>We provide help for a wide range of dependencies by addressing both the substance and the common effects.</p>
         </div>
-        <div class="row">
-            <div class="col-md-6">
+        <div class="understanding-grid">
+            <div class="understanding-card fade-in">
                 <h3>Substance Categories Addressed</h3>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h4>Artificial Substances</h4>
-                        <ul>
-                            <li>Alcohol</li>
-                            <li>Dagga</li>
-                            <li>Cocaine</li>
-                            <li>Tik</li>
-                            <li>Cigarettes</li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6">
-                        <h4>Neurochemical Dependencies</h4>
-                        <ul>
-                            <li>Dopamine & Serotonin</li>
-                            <li>GABA & Melatonin</li>
-                            <li>Norepinephrine</li>
-                            <li>Choline & Glutamate</li>
-                        </ul>
-                    </div>
-                </div>
+                <h4>Artificial Substances</h4>
+                <ul>
+                    <li>Alcohol</li>
+                    <li>Dagga</li>
+                    <li>Cocaine</li>
+                    <li>Tik</li>
+                    <li>Cigarettes</li>
+                </ul>
             </div>
-            <div class="col-md-6">
+            <div class="understanding-card fade-in" style="animation-delay: 0.1s;">
+                <h3>Neurochemical Dependencies</h3>
+                <ul>
+                    <li>Dopamine & Serotonin</li>
+                    <li>GABA & Melatonin</li>
+                    <li>Norepinephrine</li>
+                    <li>Choline & Glutamate</li>
+                </ul>
+            </div>
+            <div class="understanding-card fade-in" style="animation-delay: 0.2s;">
                 <h3>Common Effects of Dependence</h3>
                 <p><strong>Speech:</strong> Slurred, stuttering, blocked expression</p>
                 <p><strong>Thoughts:</strong> Foggy, confused, paranoid</p>
@@ -310,81 +1134,217 @@
     </div>
 </section>
 
-<section id="community" class="section community-section section-bg">
+<!-- Community Section -->
+<section id="community" class="section community-section">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6 animated fadeInLeft">
-                <div class="heading" style="text-align: left;">
-                    <h2 style="text-align: left;">Healing at your pace, in your space</h2>
-                    <p style="text-align: left; max-width: 100%;">We understand that healing is not a one-size-fits-all journey — it takes time, compassion, and a safe environment where individuals feel seen and supported. That’s why we bring rehabilitation to you, creating a space where you can heal emotionally, spiritually, and mentally without being uprooted from your comfort zone. Our mobile-first approach allows each person to engage with recovery on their own terms, with dignity and grace, while receiving consistent guidance, support, and community care. Whether you are at home, in transition, or seeking a fresh start, Follow Him walks beside you— empowering you to take the next step when you're ready.</p>
-                </div>
+        <div class="community-content">
+            <div class="community-text fade-in">
+                <h2>Healing at your pace, in your space</h2>
+                <p>We understand that healing is not a one-size-fits-all journey — it takes time, compassion, and a safe environment where individuals feel seen and supported. That's why we bring rehabilitation to you, creating a space where you can heal emotionally, spiritually, and mentally without being uprooted from your comfort zone. Our mobile-first approach allows each person to engage with recovery on their own terms, with dignity and grace, while receiving consistent guidance, support, and community care. Whether you are at home, in transition, or seeking a fresh start, Follow Him walks beside you— empowering you to take the next step when you're ready.</p>
             </div>
-            <div class="col-md-6 animated fadeInRight">
-              <img src="img/PeopleGiftedHands.jpg" alt="A Gifted Hands community event" style="margin-top: 1cm; width: 100%; max-width: none; height: auto;">
-
+            <div class="community-image fade-in" style="animation-delay: 0.2s;">
+                <img src="img/PeopleTalk.jpg" alt="Community members sharing stories and support">
             </div>
         </div>
     </div>
 </section>
 
-<section id="sustainability" class="section">
+<!-- Sustainability Section -->
+<section id="sustainability" class="section section-bg">
     <div class="container">
         <div class="heading">
-            <h2>🌱 Our Sustainability Model</h2>
+            <h2>Our Sustainability Model</h2>
             <p>Our mission is powered by a diverse network of support, from grassroots community involvement to strategic partnerships. Here's how we make it work and how you can get involved.</p>
         </div>
         <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover table-custom">
-                <thead><tr><th>Stream</th><th>Details</th></tr></thead>
+            <table class="table table-modern">
+                <thead>
+                    <tr>
+                        <th>Stream</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
                 <tbody>
-                    <tr><td><strong>Family Subscriptions</strong></td><td>Monthly fee for dedicated home-based care & continuous follow-ups.</td></tr>
-                    <tr><td><strong>Corporate Sponsorships</strong></td><td>Partnering with brands to support data, phones, and transport costs.</td></tr>
-                    <tr><td><strong>Government Partnerships</strong></td><td>Collaborating with DSD, Health Dept, & R350 grant programs.</td></tr>
-                    <tr><td><strong>Community Clean-Up Stipends</strong></td><td>Clients earn an income while actively giving back to the community.</td></tr>
-                    <tr><td><strong>Fundraising Events</strong></td><td>Engaging the public through charity walks, community days, and wellness drives.</td></tr>
-                    <tr><td><strong>Merchandise & Content</strong></td><td>Sales of branded items and monetization of our inspiring stories.</td></tr>
+                    <tr>
+                        <td><strong>Family Subscriptions</strong></td>
+                        <td>Monthly fee for dedicated home-based care & continuous follow-ups.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Corporate Sponsorships</strong></td>
+                        <td>Partnering with brands to support data, phones, and transport costs.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Government Partnerships</strong></td>
+                        <td>Collaborating with DSD, Health Dept, & R350 grant programs.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Community Clean-Up Stipends</strong></td>
+                        <td>Clients earn an income while actively giving back to the community.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fundraising Events</strong></td>
+                        <td>Engaging the public through charity walks, community days, and wellness drives.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Merchandise & Content</strong></td>
+                        <td>Sales of branded items and monetization of our inspiring stories.</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </section>
 
-<!-- ===== CONTACT SECTION (NOW SLIMMER) ===== -->
-<section id="contact" class="section contact-section" style="padding: 60px 0;">
+<!-- Contact Section -->
+<section id="contact" class="section contact-section">
     <div class="container text-center">
         <div class="heading">
-            <h2 style="color: var(--light-text);">Get In Touch</h2>
-            <p style="color: #eee;">Ready to start your journey? Need help for a loved one? Want to lend your support? We’d love to hear from you.</p>
+            <h2>Get In Touch</h2>
+            <p>Ready to start your journey? Need help for a loved one? Want to lend your support? We'd love to hear from you.</p>
         </div>
-        <div style="font-size: 1.5em; line-height: 2;">
-            <p><i class="fa fa-whatsapp"></i> &nbsp; <a href="tel:+27000000000" style="color: #fff;">+27 XXX XXX XXX</a></p>
-            <p><i class="fa fa-envelope"></i> &nbsp; <a href="mailto:support@followhim.org" style="color: #fff;">support@followhim.org</a></p>
-            <p><i class="fa fa-instagram"></i> &nbsp; <a href="#" style="color: #fff;">@FollowHimZA</a></p>
+        <div class="contact-info">
+            <p><i class="fa fa-whatsapp"></i> <a href="tel:+27000000000">+27 XXX XXX XXX</a></p>
+            <p><i class="fa fa-envelope"></i> <a href="mailto:support@followhim.org">support@followhim.org</a></p>
+            <p><i class="fa fa-instagram"></i> <a href="#">@FollowHimZA</a></p>
         </div>
     </div>
 </section>
 
+<!-- Footer -->
 <footer class="footer">
-  <div class="container">
-    Copyright © 2025 Follow Him Mobile Rehab | All Rights Reserved
-  </div>
+    <div class="container">
+        Copyright © 2025 Follow Him Mobile Rehab | All Rights Reserved
+    </div>
 </footer>
 
-<!-- External Scripts -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nav/3.0.0/jquery.nav.min.js"></script>
 <script>
-    // Smooth Scrolling for Navigation (No longer used, but harmless to keep)
-    $(document).ready(function() {
-      $('#mainNav').onePageNav({
-        currentClass: 'active',
-        changeHash: false,
-        scrollSpeed: 750,
-        scrollThreshold: 0.5,
-        filter: '',
-        easing: 'swing'
-      });
+    // Scroll Progress Indicator
+    window.addEventListener('scroll', function() {
+        const scrollProgress = document.getElementById('scrollProgress');
+        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (window.scrollY / windowHeight) * 100;
+        scrollProgress.style.width = scrolled + '%';
+    });
+
+    // Mobile Menu Toggle
+    document.getElementById('menuToggle').addEventListener('click', function() {
+        document.getElementById('navLinks').classList.toggle('active');
+        const icon = this.querySelector('i');
+        if (document.getElementById('navLinks').classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function() {
+            document.getElementById('navLinks').classList.remove('active');
+            const icon = document.getElementById('menuToggle').querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        });
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+
+        // Update active nav link
+        const sections = document.querySelectorAll('section[id]');
+        const scrollY = window.pageYOffset;
+
+        sections.forEach(section => {
+            const sectionHeight = section.offsetHeight;
+            const sectionTop = section.offsetTop - 100;
+            const sectionId = section.getAttribute('id');
+            const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
+
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                if (navLink) navLink.classList.add('active');
+            }
+        });
+    });
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const offsetTop = target.offsetTop - 70;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Fade in animation
+                if (entry.target.classList.contains('fade-in')) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            }
+        });
+    }, observerOptions);
+
+    // Observe all fade-in elements
+    document.querySelectorAll('.fade-in').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        observer.observe(el);
+    });
+
+    // Parallax effect for hero section
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const hero = document.getElementById('home');
+        if (hero) {
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+    });
+
+    // Interactive card tilt effect
+    document.querySelectorAll('.info-card-modern, .understanding-card').forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+        });
+
+        card.addEventListener('mouseleave', function() {
+            card.style.transform = '';
+        });
     });
 </script>
 
